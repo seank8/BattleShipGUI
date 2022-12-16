@@ -1,5 +1,8 @@
 package team.battleshipGUI.Model;
-public class Grid {
+
+import java.io.Serializable;
+
+public class Grid implements Serializable{
     protected Cell[][] cells = new Cell[10][10];
     
     private CellState state = CellState.EMPTY;

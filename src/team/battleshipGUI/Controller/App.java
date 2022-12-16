@@ -14,11 +14,9 @@ public class App {
         Game game = new Game();
         game.setup();
 
-        TargetGridController tgc = new TargetGridController(window.getTargetPanel(), game.getHumanTargetGrid());
-        StatusController sc = new StatusController(window.getTextPane(), game);
-        OceanGridController ogc = new OceanGridController(window.getOceanPanel(), game.getHumanOceanGrid());
+        
 
-        WindowController wc = new WindowController(window);
+        WindowController wc = new WindowController(window, game);
         window.setVisible(true);
         window.pack();
         

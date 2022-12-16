@@ -1,12 +1,14 @@
 package team.battleshipGUI.Model;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TargetGrid extends Grid implements IShotDelegate {
     protected IShotDelegate delegate;
     
-    protected ArrayList<IGridListener> listeners = new ArrayList<IGridListener>();
+    protected transient ArrayList<IGridListener> listeners = new ArrayList<IGridListener>();
 
     public TargetGrid() {
         super();
@@ -14,6 +16,7 @@ public class TargetGrid extends Grid implements IShotDelegate {
 
     public void addListener(IGridListener toAdd){
         listeners.add(toAdd);
+        notifyListeners();
     }
 
     protected void notifyListeners(){
@@ -21,6 +24,10 @@ public class TargetGrid extends Grid implements IShotDelegate {
             GridRep gridRep = new GridRep(this);
             listener.gridChanged(gridRep);
         }
+    }
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException{
+        in.defaultReadObject();
+        listeners = new ArrayList<IGridListener>();
     }
 
     @Override

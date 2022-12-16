@@ -1,6 +1,8 @@
 package team.battleshipGUI.Model;
 
-public class GridRep {
+import java.io.Serializable;
+
+public class GridRep implements Serializable{
 
     private CellState[][] cells = new CellState[10][10];
 

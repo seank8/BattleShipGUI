@@ -1,8 +1,9 @@
 package team.battleshipGUI.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Ship {
+public class Ship implements Serializable {
     private ShipType ship;
     private int hitCount;
     protected ArrayList<Coordinate> coordinates;

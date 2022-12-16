@@ -1,6 +1,8 @@
 package team.battleshipGUI.Model;
 
-public abstract class IPlayer {
+import java.io.Serializable;
+
+public abstract class IPlayer implements Serializable {
 
     
     public String getName(){

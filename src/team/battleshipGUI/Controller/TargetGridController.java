@@ -29,6 +29,10 @@ public class TargetGridController {
 
     }
 
+    public GridPanelListener getviewListener(){
+        return viewListener;
+    }
+
     private class GridPanelListener extends MouseAdapter{
         @Override
         public void mouseClicked(MouseEvent e){

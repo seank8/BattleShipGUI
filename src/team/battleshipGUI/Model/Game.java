@@ -1,11 +1,14 @@
 package team.battleshipGUI.Model;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Game implements IShotDelegate {
+public class Game implements IShotDelegate, Serializable {
     private Player humanPlayer;
     private BOTPlayer compPlayer;
-    private ArrayList<IStatusListener> listeners = new ArrayList<IStatusListener>();
+    private transient ArrayList<IStatusListener> listeners = new ArrayList<IStatusListener>();
 
     public Game(){
 
@@ -19,6 +22,10 @@ public class Game implements IShotDelegate {
     public void setup() {
         humanPlayer.placeShips();
         compPlayer.placeShips();
+    }
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException{
+        in.defaultReadObject();
+        listeners = new ArrayList<IStatusListener>();
     }
 
     public TargetGrid getHumanTargetGrid(){

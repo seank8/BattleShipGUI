@@ -1,11 +1,12 @@
 package team.battleshipGUI.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class BOTPlayer extends IPlayer{
+public class BOTPlayer extends IPlayer implements Serializable{
     private String name;
     private Shot shot;
     protected OceanGrid oceanGrid = new OceanGrid();

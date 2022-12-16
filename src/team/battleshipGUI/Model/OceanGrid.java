@@ -1,11 +1,14 @@
 package team.battleshipGUI.Model;
 
+import java.io.ObjectInputStream;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OceanGrid extends Grid{
+public class OceanGrid extends Grid {
     private List<String> sunkShips = new ArrayList<String>();
-    protected ArrayList<IGridListener> listeners = new ArrayList<IGridListener>();
+    protected transient ArrayList<IGridListener> listeners = new ArrayList<IGridListener>();
 
     public OceanGrid(){
         super();
@@ -13,12 +16,18 @@ public class OceanGrid extends Grid{
     }
     public void addListener(IGridListener toAdd){
         listeners.add(toAdd);
+        notifyListeners();
     }
     protected void notifyListeners(){
         for(IGridListener listener: listeners){
             GridRep gridRep = new GridRep(this);
             listener.gridChanged(gridRep);
         }
+    }
+
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException{
+        in.defaultReadObject();
+        listeners = new ArrayList<IGridListener>();
     }
     
     @Override

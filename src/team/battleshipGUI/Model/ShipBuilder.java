@@ -3,7 +3,7 @@ package team.battleshipGUI.Model;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ShipBuilder{
+public class ShipBuilder {
     private ArrayList<Ship> ships = new ArrayList<Ship>();
     
     private Random rand = new Random();
